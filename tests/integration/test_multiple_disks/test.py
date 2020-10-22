@@ -13,6 +13,7 @@ from helpers.cluster import ClickHouseCluster
 cluster = ClickHouseCluster(__file__)
 
 node1 = cluster.add_instance('node1',
+                             user_configs=["configs/users.d/settings.xml"],
                              main_configs=['configs/logs_config.xml', 'configs/config.d/storage_configuration.xml',
                                            'configs/config.d/cluster.xml'],
                              with_zookeeper=True,
@@ -21,6 +22,7 @@ node1 = cluster.add_instance('node1',
                              macros={"shard": 0, "replica": 1})
 
 node2 = cluster.add_instance('node2',
+                             user_configs=["configs/users.d/settings.xml"],
                              main_configs=['configs/logs_config.xml', 'configs/config.d/storage_configuration.xml',
                                            'configs/config.d/cluster.xml'],
                              with_zookeeper=True,
